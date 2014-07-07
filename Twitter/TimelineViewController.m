@@ -12,6 +12,8 @@
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
 #import "TweetCell.h"
+#import "TwitterClient.h"
+#import "Tweet.h"
 
 #import "EGORefreshTableHeaderView.h"
 
@@ -19,6 +21,9 @@
 @interface TimelineViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) UIRefreshControl *refreshControl;
+
+@property (strong, nonatomic) NSDictionary *userInfo;
+@property (strong, nonatomic) NSArray *tweets;
 
 - (void)pushSignOutButton;
 - (void)pushNewButton;
@@ -54,11 +59,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self setupNavBar];
+    [self loadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
+
     if (_refreshHeaderView == nil) {
         
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
@@ -87,7 +97,7 @@
 }
 
 - (void)pushSignOutButton {
-    // stub
+    [self.signout_delegate onSignOut];
 }
 
 - (void)pushNewButton {
@@ -114,8 +124,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.businesses.count;
-    return 10;
+    return self.tweets.count;
 }
 
 
@@ -123,31 +132,37 @@
     //NSLog(@"cell for row at index path: %d", indexPath.row);
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
 
-    cell.replyImage.image = [UIImage imageNamed:@"Reply"];
-    cell.retweetImage.image = [UIImage imageNamed:@"Retweet"];
-    cell.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
-    
-    [cell.tweetContentsLabel sizeToFit];
+    [cell setupWithTweet: self.tweets[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    [self searchBarCancelButtonClicked:self.searchBar];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // Here we would pass selected tweet info
-    // self.tweet = foo;
     TweetViewController *tvc = [[TweetViewController alloc] init];
-    
+    tvc.tweet = self.tweets[indexPath.row];
     [self.navigationController pushViewController:tvc animated:YES];
-    
-    
 }
 
 
 - (void)loadData {
-    // load some data YO
-}
+    [[TwitterClient instance] homeTimelineWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.tweets = [Tweet tweetsFromRawResponse:responseObject];
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        self.navigationItem.prompt = @"Unable to fetch tweets";
+        NSLog(@"Error getting home timeline: %@", error);
+    }];
 
+    if (self.userInfo == nil) {
+        [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.userInfo = responseObject;
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            self.navigationItem.prompt = @"Unable to fetch user profile";
+            NSLog(@"Failed to get user info");
+        }];
+    }
+}
 
 // EGOTableViewPullRefresh
 - (void)reloadTableViewDataSource{

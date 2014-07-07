@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_BDBOAuth1Manager 2
 #define COCOAPODS_VERSION_PATCH_BDBOAuth1Manager 1
 
+// DateTools
+#define COCOAPODS_POD_AVAILABLE_DateTools
+#define COCOAPODS_VERSION_MAJOR_DateTools 1
+#define COCOAPODS_VERSION_MINOR_DateTools 3
+#define COCOAPODS_VERSION_PATCH_DateTools 0
+
 // EGOTableViewPullRefresh
 #define COCOAPODS_POD_AVAILABLE_EGOTableViewPullRefresh
 #define COCOAPODS_VERSION_MAJOR_EGOTableViewPullRefresh 0

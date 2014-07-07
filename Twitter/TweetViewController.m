@@ -8,6 +8,7 @@
 
 #import "TwitterCommon.h"
 #import "TweetViewController.h"
+#import "ComposeViewController.h"
 
 @interface TweetViewController ()
 
@@ -46,7 +47,8 @@
 }
 
 - (void)pushReplyButton {
-    // stub
+    [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
+
 }
 
 - (void)setupNavBar {

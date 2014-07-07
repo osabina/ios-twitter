@@ -61,7 +61,7 @@
                             <constraint firstAttribute="height" constant="15" id="ywK-9Z-6zo"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="Fuz-mZ-ecZ">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Body" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="Fuz-mZ-ecZ">
                         <rect key="frame" x="85" y="43" width="225" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
@@ -120,16 +120,18 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="avatarImage" destination="H2p-sc-9uM" id="LBJ-X1-MBM"/>
+                <outlet property="avatarImage" destination="g58-5w-Vuj" id="q1c-0A-1UI"/>
+                <outlet property="bodyLabel" destination="Fuz-mZ-ecZ" id="204-68-4J5"/>
                 <outlet property="favoriteImage" destination="qrD-0G-85b" id="LPO-M4-gQF"/>
-                <outlet property="handleLabel" destination="H2p-sc-9uM" id="aII-ka-kDL"/>
-                <outlet property="nameLabel" destination="H2p-sc-9uM" id="Puc-iE-QbS"/>
+                <outlet property="handleLabel" destination="Yfe-Kg-ZFA" id="sov-DQ-xvl"/>
+                <outlet property="nameLabel" destination="3g6-qm-OQi" id="BXl-wR-QAg"/>
                 <outlet property="replyImage" destination="TWI-jS-vlB" id="8Gj-ui-bih"/>
                 <outlet property="retweetImage" destination="HYF-uV-cCy" id="UFl-pR-cij"/>
-                <outlet property="retweetedImage" destination="H2p-sc-9uM" id="wPX-wM-xwH"/>
-                <outlet property="retweetedLabel" destination="H2p-sc-9uM" id="JJN-ms-tCP"/>
-                <outlet property="timeAgoLabel" destination="H2p-sc-9uM" id="Pja-qo-Gt0"/>
-                <outlet property="tweetContentsLabel" destination="H2p-sc-9uM" id="SET-uK-lIv"/>
+                <outlet property="retweetedImage" destination="k7K-TL-eNo" id="9Cf-H3-aTi"/>
+                <outlet property="retweetedImageHeight" destination="ywK-9Z-6zo" id="ovh-P1-KpF"/>
+                <outlet property="retweetedLabel" destination="91h-JO-RCj" id="pvm-it-F0f"/>
+                <outlet property="retweetedLabelHeight" destination="AHG-Dq-5hC" id="geZ-0M-0EN"/>
+                <outlet property="timeAgoLabel" destination="gbv-Pz-y0A" id="wwH-Za-e7z"/>
             </connections>
         </tableViewCell>
     </objects>

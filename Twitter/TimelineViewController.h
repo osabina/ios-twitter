@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
-
+#import "AppDelegate.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate> {
         EGORefreshTableHeaderView *_refreshHeaderView;
         BOOL _reloading;
 }
 
+@property (nonatomic, strong)AppDelegate *signout_delegate;
 
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;

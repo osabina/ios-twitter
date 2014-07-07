@@ -41,6 +41,7 @@ install_resource()
       ;;
   esac
 }
+install_resource "DateTools/DateTools/DateTools.bundle"
 install_resource "EGOTableViewPullRefresh/EGOTableViewPullRefresh/Resources/blackArrow.png"
 install_resource "EGOTableViewPullRefresh/EGOTableViewPullRefresh/Resources/blackArrow@2x.png"
 install_resource "EGOTableViewPullRefresh/EGOTableViewPullRefresh/Resources/blueArrow.png"

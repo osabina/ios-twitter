@@ -8,20 +8,21 @@
 
 #import "AppDelegate.h"
 #import "TwitterCommon.h"
+#import "TwitterClient.h"
+
 #import "TimelineViewController.h"
+#import "LoginViewController.h"
+
+@interface AppDelegate()
+@property (assign) BOOL isNavLoaded;
+@end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    TimelineViewController *vc = [[TimelineViewController alloc] init];
-    
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController: vc];
-    nvc.navigationBar.translucent = NO;
-    
-    self.window.rootViewController = nvc;
+    [self setupRootView];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -51,6 +52,56 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation     {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithCapacity:0];
+    NSArray *pairs = [url.query componentsSeparatedByString:@"&"];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [parameters setObject:val forKey:key];
+
+        if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]) {
+            [[TwitterClient instance] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
+                [[TwitterClient instance].requestSerializer saveAccessToken:accessToken];
+                NSLog(@"Got the access token!");
+                [self setupRootView];
+            } failure:^(NSError *error) {
+                NSLog(@"Failed to get access token");
+            }];
+        }
+    }
+    return YES;
+}
+
+- (void) setupRootView {
+    if ([TwitterClient instance].isAuthorized) {
+        TimelineViewController *vc = [[TimelineViewController alloc] init];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        nc.navigationBar.tintColor = [UIColor whiteColor];
+        nc.navigationBar.barTintColor = UIColorFromRGB(0x77b6e9);
+        nc.navigationBar.translucent = NO;
+        self.window.rootViewController = nc;
+        vc.signout_delegate = self;
+    }
+    else {
+        self.window.rootViewController = [[LoginViewController alloc] init];
+        self.window.backgroundColor = [UIColor whiteColor];
+        self.isNavLoaded = NO;
+    }
+}
+
+- (void) onSignOut {
+    [[TwitterClient instance] logout];
+    NSLog(@"Logged out!");
+    [self setupRootView];
 }
 
 @end

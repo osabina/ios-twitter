@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
 
 @interface TweetViewController : UIViewController <UINavigationControllerDelegate> {
     UINavigationController *navController;
@@ -23,5 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *replyImage;
 @property (weak, nonatomic) IBOutlet UIImageView *retweetImage;
 @property (weak, nonatomic) IBOutlet UIImageView *favoriteImage;
+
+@property (strong, nonatomic) Tweet *tweet;
 
 @end
