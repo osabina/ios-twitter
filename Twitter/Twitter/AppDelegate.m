@@ -7,14 +7,21 @@
 //
 
 #import "AppDelegate.h"
+#import "TwitterCommon.h"
+#import "TimelineViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    TimelineViewController *vc = [[TimelineViewController alloc] init];
+    
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController: vc];
+    nvc.navigationBar.translucent = NO;
+    
+    self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;
 }

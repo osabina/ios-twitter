@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGORefreshTableHeaderView.h"
 
-@interface TimelineViewController : UIViewController
 
+@interface TimelineViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate> {
+        EGORefreshTableHeaderView *_refreshHeaderView;
+        BOOL _reloading;
+}
+
+
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 @end

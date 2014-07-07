@@ -45,6 +45,7 @@
 		2AA9B31A9CF44D9089AACA8B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		644312C9196A41740046E784 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
 		644312CA196A41740046E784 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
+		644312CC196A58A50046E784 /* TwitterCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterCommon.h; sourceTree = "<group>"; };
 		64B73794196A3B80001B38C5 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B73797196A3B80001B38C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64B73799196A3B80001B38C5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,21 +139,22 @@
 			isa = PBXGroup;
 			children = (
 				64DCF039196A3C2700B7A32A /* TimelineViewController.h */,
+				64DCF03A196A3C2700B7A32A /* TimelineViewController.m */,
+				64DCF03B196A3C2800B7A32A /* TimelineViewController.xib */,
 				64DCF03E196A3C5F00B7A32A /* TweetViewController.h */,
 				64DCF03F196A3C5F00B7A32A /* TweetViewController.m */,
 				64DCF040196A3C5F00B7A32A /* TweetViewController.xib */,
-				64DCF03A196A3C2700B7A32A /* TimelineViewController.m */,
-				64DCF03B196A3C2800B7A32A /* TimelineViewController.xib */,
-				64B737A6196A3B80001B38C5 /* AppDelegate.h */,
-				64B737A7196A3B80001B38C5 /* AppDelegate.m */,
-				64B737A9196A3B80001B38C5 /* Images.xcassets */,
-				64B7379E196A3B80001B38C5 /* Supporting Files */,
 				64DCF044196A3CA800B7A32A /* ComposeViewController.h */,
 				64DCF045196A3CA800B7A32A /* ComposeViewController.m */,
 				64DCF046196A3CA800B7A32A /* ComposeViewController.xib */,
 				64DCF049196A3CE000B7A32A /* TweetCell.h */,
 				64DCF04A196A3CE000B7A32A /* TweetCell.m */,
 				64DCF04B196A3CE000B7A32A /* TweetCell.xib */,
+				64B737A6196A3B80001B38C5 /* AppDelegate.h */,
+				64B737A7196A3B80001B38C5 /* AppDelegate.m */,
+				64B737A9196A3B80001B38C5 /* Images.xcassets */,
+				64B7379E196A3B80001B38C5 /* Supporting Files */,
+				644312CC196A58A50046E784 /* TwitterCommon.h */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
