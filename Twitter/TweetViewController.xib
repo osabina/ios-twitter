@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetViewController">
             <connections>
                 <outlet property="avatarImage" destination="SdZ-kn-vXe" id="Lmz-5o-Ot1"/>
+                <outlet property="canvasView" destination="i5M-Pr-FkT" id="OsK-Rx-JTc"/>
                 <outlet property="favoriteImage" destination="ypL-qe-YcN" id="Ro4-Vd-5Nv"/>
                 <outlet property="handleLabel" destination="TqQ-0R-fky" id="qF4-zd-f4s"/>
                 <outlet property="nameLabel" destination="Lif-F8-SMm" id="Gw6-fU-3xm"/>
@@ -15,7 +16,10 @@
                 <outlet property="replyImage" destination="4hQ-eJ-1fJ" id="PbA-3a-A2n"/>
                 <outlet property="retweetImage" destination="xjV-x9-Z0b" id="YYN-5N-RS0"/>
                 <outlet property="retweetedImage" destination="PFb-zm-qam" id="gZ7-Ce-3jZ"/>
+                <outlet property="retweetedImageHeight" destination="LNp-y7-HUa" id="CTS-ao-kYl"/>
                 <outlet property="retweetedLabel" destination="jkx-nu-JJ5" id="kK6-Ho-5n4"/>
+                <outlet property="retweetedLabelHeight" destination="e4s-uK-Stv" id="jud-0x-m6B"/>
+                <outlet property="retweetedMarginHeight" destination="i5M-Pr-FkT" id="c0K-xh-n8X"/>
                 <outlet property="timeLabel" destination="u2l-75-k3f" id="nI4-aI-u7y"/>
                 <outlet property="tweetBody" destination="myj-05-Pl0" id="1d7-GZ-Szs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -72,6 +76,9 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gatoroz retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkx-nu-JJ5">
                     <rect key="frame" x="65" y="25" width="109" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="e4s-uK-Stv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>

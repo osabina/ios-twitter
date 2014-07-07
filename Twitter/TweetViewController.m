@@ -10,6 +10,9 @@
 #import "TweetViewController.h"
 #import "ComposeViewController.h"
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <NSDate+DateTools.h>
+
 @interface TweetViewController ()
 
 - (void)pushReplyButton;
@@ -34,10 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.replyImage.image = [UIImage imageNamed:@"Reply"];
-    self.retweetImage.image = [UIImage imageNamed:@"Retweet"];
-    self.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
+    [self setupWithTweet: self.tweet];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +80,51 @@
     
     
 }
+
+
+
+-(void)setupWithTweet: (Tweet *)tweet {
+    self.tweet = tweet;
+    
+    self.replyImage.image = [UIImage imageNamed:@"Reply"];
+    self.retweetImage.image = [UIImage imageNamed:@"Retweet"];
+    self.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
+    
+    self.nameLabel.text = tweet.name;
+    [self.nameLabel sizeToFit];
+    
+    self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.handle];
+    self.tweetBody.text = tweet.body;
+    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.avatarURL]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        self.avatarImage.image = image;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"Failed to get profile view");
+    }];
+
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateStyle:NSDateFormatterShortStyle];
+    [fmt setTimeStyle:NSDateFormatterShortStyle];
+    self.timeLabel.text = [ fmt stringFromDate: tweet.tweetDate];
+    
+    self.numRetweetsLabel.text = [tweet.retweetCount stringValue];
+    self.numFavoritesLabel.text = [tweet.favoriteCount stringValue];
+    
+    if (tweet.isRetweeted == NO) {
+        self.retweetedImage.hidden = true;
+        self.retweetedLabel.hidden = true;
+        self.retweetedImageHeight = 0;
+        self.retweetedLabelHeight = 0;
+        self.retweetedMarginHeight = 0;
+    } else {
+        self.retweetedImage.hidden = false;
+        self.retweetedLabel.hidden = false;
+        self.retweetedLabel.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweetedHandle];
+        self.retweetedImage.image = [UIImage imageNamed:@"Retweet"];
+    }
+
+    [self.canvasView layoutIfNeeded];
+}
+
 
 // navigation view controller delegate methods
 - (void)navigationController:(UINavigationController *)navigationController

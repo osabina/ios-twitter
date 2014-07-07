@@ -55,7 +55,7 @@
         self.retweetedImage.image = [UIImage imageNamed:@"Retweet"];
     }
     
-//    [self layoutIfNeeded]; // see http://stackoverflow.com/questions/19395766/where-to-update-auto-layout-constant
+    [self layoutIfNeeded];
     
 //    [self updateRetweets];
 //    [self updateFavourites];
