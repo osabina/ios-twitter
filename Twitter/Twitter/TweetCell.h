@@ -25,9 +25,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *replyImage;
-@property (weak, nonatomic) IBOutlet UIImageView *retweetImage;
-@property (weak, nonatomic) IBOutlet UIImageView *favoriteImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 - (IBAction)replyButtonPushed:(id)sender;

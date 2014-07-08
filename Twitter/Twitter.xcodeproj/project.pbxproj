@@ -11,6 +11,7 @@
 		64AC6075196B29A100FB74FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AC6073196B29A100FB74FE /* LoginViewController.m */; };
 		64AC6076196B29A100FB74FE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64AC6074196B29A100FB74FE /* LoginViewController.xib */; };
 		64AC6079196B38D100FB74FE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AC6078196B38D100FB74FE /* Tweet.m */; };
+		64AC607C196B784100FB74FE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AC607B196B784100FB74FE /* User.m */; };
 		64B73798196A3B80001B38C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B73797196A3B80001B38C5 /* Foundation.framework */; };
 		64B7379A196A3B80001B38C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B73799196A3B80001B38C5 /* CoreGraphics.framework */; };
 		64B7379C196A3B80001B38C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B7379B196A3B80001B38C5 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		64AC6074196B29A100FB74FE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		64AC6077196B38D100FB74FE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		64AC6078196B38D100FB74FE /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		64AC607A196B784100FB74FE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		64AC607B196B784100FB74FE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		64B73794196A3B80001B38C5 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B73797196A3B80001B38C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64B73799196A3B80001B38C5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,8 @@
 				64AC6074196B29A100FB74FE /* LoginViewController.xib */,
 				64AC6077196B38D100FB74FE /* Tweet.h */,
 				64AC6078196B38D100FB74FE /* Tweet.m */,
+				64AC607A196B784100FB74FE /* User.h */,
+				64AC607B196B784100FB74FE /* User.m */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64AC607C196B784100FB74FE /* User.m in Sources */,
 				64AC6079196B38D100FB74FE /* Tweet.m in Sources */,
 				64AC6075196B29A100FB74FE /* LoginViewController.m in Sources */,
 				64DCF041196A3C5F00B7A32A /* TweetViewController.m in Sources */,

@@ -29,13 +29,7 @@
 -(void)setupWithTweet: (Tweet *)tweet {
     self.tweet = tweet;
     
-    self.replyImage.image = [UIImage imageNamed:@"Reply"];
-    self.retweetImage.image = [UIImage imageNamed:@"Retweet"];
-//    self.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
-  
-    
-    self.nameLabel.text = tweet.name == nil ? @"Foo" : tweet.name;
-    
+    self.nameLabel.text = tweet.name;
     [self.nameLabel sizeToFit];
 
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.handle];
