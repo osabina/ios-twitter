@@ -88,6 +88,7 @@
 - (IBAction)replyButtonPushed:(id)sender {
     ComposeViewController *cvc = [[ComposeViewController alloc] init];
     cvc.orig_tweet = self.tweet;
+    cvc.userInfo = self.userInfo;
     cvc.is_reply = YES;
     [self.navController pushViewController:cvc animated:YES];
 }
@@ -95,6 +96,7 @@
 - (IBAction)retweetButtonPushed:(id)sender {
     ComposeViewController *cvc = [[ComposeViewController alloc] init];
     cvc.orig_tweet = self.tweet;
+    cvc.userInfo = self.userInfo;
     cvc.is_retweet = YES;
     [self.navController pushViewController:cvc animated:YES];
 }

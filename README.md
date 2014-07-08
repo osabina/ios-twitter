@@ -10,7 +10,7 @@ Twitter app for iOS class (Assignment #3)
 - [x] The current signed in user will be persisted across restarts
 - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings.  You will also need to augment the model classes.
 - [x] User can pull to refresh
-- [] User can compose a new tweet by tapping on a compose button.
+- [x] User can compose a new tweet by tapping on a compose button.
 - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 
 #### Optional
@@ -21,15 +21,17 @@ Twitter app for iOS class (Assignment #3)
 - [] Replies should be prefixed with the username and the reply_id should be set when posting the tweet
 - [] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
-<!-- **UI Demo**
-Uncomment me when ready
+**UI Demo**
 
-![demo gif](https://raw.githubusercontent.com/osabina/ios-yelp/master/rt_demo.gif))
--->
+![demo gif](https://raw.githubusercontent.com/osabina/ios-twitter/master/rt_demo.gif)
 
 **Notes**
 
-This took me ~12 hours
+This took me ~12 hours (plus a couple of hours stuck on below :( ).
+
+I had to stub the user display info for the compose view.  For some reason I kept losing my model data and after hours of banging my head against the wall, I gave up.
+
+Also never completely got the table cells to shrink properly.
 
 **Credits**
 

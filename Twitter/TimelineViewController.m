@@ -135,7 +135,10 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
 
     cell.navController = self.navigationController; // hack?!?!?
+    cell.userInfo = self.userInfo; // so much hack
+
     [cell setupWithTweet: self.tweets[indexPath.row]];
+
     return cell;
 }
 
@@ -177,6 +180,7 @@
     if (self.userInfo == nil) {
         [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             self.userInfo = responseObject;
+            NSLog(@"%@", self.userInfo);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.navigationItem.prompt = @"Unable to fetch user profile";
             NSLog(@"Failed to get user info");

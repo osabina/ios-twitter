@@ -8,9 +8,12 @@
 
 #import "Tweet.h"
 #import "TwitterCommon.h"
+#import "TwitterClient.h"
 
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
+
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 
 @interface ComposeViewController ()
@@ -44,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
-    
+    [self setupView: self.userInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,16 +89,39 @@
     
     
 }
+
+- (void)setupView:(NSDictionary*)userInfo {
+    // I don't know why this is not displaying!!
+    self.nameLabel.text = @"Oz"; // userInfo[@"name"];
+    self.handleLabel.text =  @"gatoroz"; //userInfo[@"screen_name"];
+    //    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:userInfo[@"profile_image_url"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pbs.twimg.com/profile_images/300583089/twit_head_normal.jpg"]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        self.avatarImage.image = image;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        self.navigationItem.prompt = @"Failed to load profile image";
+        NSLog(@"Failed to get profile view");
+    }];
+}
+
     
 - (void)pushCancelButton {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)pushTweetButton {
     NSLog(@"Tweet Tweet");
-    // This is temp for testing
-    [self.navigationController pushViewController:[[TweetViewController alloc] init] animated:YES];
-}
+    if (! [self.tweetTextView.text isEqualToString:@""]) {
+        self.tweetTextView.editable = NO;
+        [[TwitterClient instance] updateStatus:self.tweetTextView.text withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            // Tweet *t = [Tweet cookedFromRawTweet:responseObject];
+            // Push this back to the view to show without reload.
+            [self.navigationController popViewControllerAnimated:YES];
 
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            self.navigationItem.prompt = @"Unable to post tweet";
+            NSLog(@"error: %@", error);
+        }];
+    }
+}
 
 
 // navigation view controller delegate methods

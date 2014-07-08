@@ -35,8 +35,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)favoriteButtonPushed:(id)sender;
 
-@property (strong,nonatomic) UINavigationController *navController;
-@property (strong,nonatomic) Tweet *tweet;
+@property (strong, nonatomic) UINavigationController *navController;
+@property (strong, nonatomic) Tweet *tweet;
+@property (strong, nonatomic) NSDictionary *userInfo;
 
 -(void)setupWithTweet: (Tweet *)tweet;
 -(void)updateButtons;
