@@ -6,11 +6,16 @@
 //  Copyright (c) 2014 Ozzie Sabina. All rights reserved.
 //
 
-#import "ComposeViewController.h"
+#import "Tweet.h"
 #import "TwitterCommon.h"
+
+#import "ComposeViewController.h"
 #import "TweetViewController.h"
 
+
 @interface ComposeViewController ()
+
+@property (strong, nonatomic) Tweet *tweet;
 
 - (void)pushCancelButton;
 - (void)pushTweetButton;
@@ -24,7 +29,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom stuff
+        _is_reply = NO;
+        _is_retweet = NO;
     }
     return self;
 }

@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) NSDictionary *userInfo;
 @property (strong, nonatomic) NSArray *tweets;
+@property (strong, nonatomic) TweetCell *layoutCell;
+
 
 - (void)pushSignOutButton;
 - (void)pushNewButton;
@@ -86,7 +88,7 @@
     self.tableView.dataSource = self;
     
     // static, for now
-    self.tableView.rowHeight = 145;
+    //self.tableView.rowHeight = 145;
 }
 
 
@@ -132,6 +134,7 @@
     //NSLog(@"cell for row at index path: %d", indexPath.row);
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
 
+    cell.navController = self.navigationController; // hack?!?!?
     [cell setupWithTweet: self.tweets[indexPath.row]];
     return cell;
 }
@@ -143,6 +146,23 @@
     tvc.tweet = self.tweets[indexPath.row];
     [self.navigationController pushViewController:tvc animated:YES];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.layoutCell) {
+        self.layoutCell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    }
+    
+    [self.layoutCell setupWithTweet: self.tweets[indexPath.row]];
+    [self.layoutCell.bodyLabel sizeToFit];
+    [self.layoutCell layoutIfNeeded];
+    [self.layoutCell.canvasView sizeToFit];
+    return self.layoutCell.canvasView.frame.size.height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 130;
+}
+
 
 
 - (void)loadData {

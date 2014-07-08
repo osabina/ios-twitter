@@ -10,10 +10,12 @@
 #import "Tweet.h"
 
 @interface TweetCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *canvasView;
 @property (weak, nonatomic) IBOutlet UILabel *retweetedLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *retweetedImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *retweetedLabelHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *retweetedImageHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarImageTopMargin;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
@@ -27,8 +29,19 @@
 @property (weak, nonatomic) IBOutlet UIImageView *retweetImage;
 @property (weak, nonatomic) IBOutlet UIImageView *favoriteImage;
 
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
+- (IBAction)replyButtonPushed:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+- (IBAction)retweetButtonPushed:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+- (IBAction)favoriteButtonPushed:(id)sender;
+
+@property (strong,nonatomic) UINavigationController *navController;
 @property (strong,nonatomic) Tweet *tweet;
 
 -(void)setupWithTweet: (Tweet *)tweet;
+-(void)updateButtons;
 
 @end

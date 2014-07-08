@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Ozzie Sabina. All rights reserved.
 //
 
+#import "ComposeViewController.h"
 #import "TweetCell.h"
+
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <NSDate+DateTools.h>
 
@@ -29,9 +31,11 @@
     
     self.replyImage.image = [UIImage imageNamed:@"Reply"];
     self.retweetImage.image = [UIImage imageNamed:@"Retweet"];
-    self.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
+//    self.favoriteImage.image = [UIImage imageNamed:@"Favorite"];
+  
     
-    self.nameLabel.text = tweet.name;
+    self.nameLabel.text = tweet.name == nil ? @"Foo" : tweet.name;
+    
     [self.nameLabel sizeToFit];
 
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.handle];
@@ -46,8 +50,9 @@
     if (tweet.isRetweeted == NO) {
         self.retweetedImage.hidden = true;
         self.retweetedLabel.hidden = true;
-        self.retweetedImageHeight = 0;
-        self.retweetedLabelHeight = 0;
+        self.retweetedImageHeight.constant = 0.0;
+        self.retweetedLabelHeight.constant = 0.0;
+        self.avatarImageTopMargin.constant = 10.0;
     } else {
         self.retweetedImage.hidden = false;
         self.retweetedLabel.hidden = false;
@@ -58,8 +63,45 @@
     [self layoutIfNeeded];
     
 //    [self updateRetweets];
-//    [self updateFavourites];
+    [self updateButtons];
     
 }
 
+- (void) updateButtons {
+    // Reply Button
+    [self.replyButton setTitle:@"" forState:UIControlStateNormal];
+    [self.replyButton setBackgroundImage:[UIImage imageNamed:@"Reply"] forState:UIControlStateNormal];
+    // Retweet Button
+    [self.retweetButton setTitle:@"" forState:UIControlStateNormal];
+    [self.retweetButton setBackgroundImage:[UIImage imageNamed:@"Retweet"] forState:UIControlStateNormal];
+    
+    // Favorite Button
+    [self.favoriteButton setTitle:@"" forState:UIControlStateNormal];
+    if (self.tweet.favoriteCount.intValue <= 0) {
+        [self.favoriteButton setBackgroundImage:[UIImage imageNamed:@"Favorite"] forState:UIControlStateNormal];
+    } else {
+        [self.favoriteButton setBackgroundImage:[UIImage imageNamed:@"FavoriteSelected"] forState:UIControlStateNormal];
+    }
+    
+}
+
+- (IBAction)favoriteButtonPushed:(UIButton *)sender {
+    self.tweet.favoriteCount = @(self.tweet.favoriteCount.intValue + 1);
+    // If we maintained state, we could use this as a toggle instead
+    sender.enabled = NO;
+    [self updateButtons];
+}
+- (IBAction)replyButtonPushed:(id)sender {
+    ComposeViewController *cvc = [[ComposeViewController alloc] init];
+    cvc.orig_tweet = self.tweet;
+    cvc.is_reply = YES;
+    [self.navController pushViewController:cvc animated:YES];
+}
+
+- (IBAction)retweetButtonPushed:(id)sender {
+    ComposeViewController *cvc = [[ComposeViewController alloc] init];
+    cvc.orig_tweet = self.tweet;
+    cvc.is_retweet = YES;
+    [self.navController pushViewController:cvc animated:YES];
+}
 @end
