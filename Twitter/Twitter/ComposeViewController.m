@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
-    [self setupView: self.userInfo];
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,11 +90,28 @@
     
 }
 
-- (void)setupView:(NSDictionary*)userInfo {
-    // I don't know why this is not displaying!!
+- (void)setupView {
+    
+// Killing me that I can't seem to get this data to stick around, it seems to be being GCed (ARCed?)
+// but I haven't a clue why...
+//    [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        self.userInfo = responseObject;
+//        NSLog(@"%@", self.userInfo);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        self.navigationItem.prompt = @"Unable to fetch user profile";
+//        NSLog(@"Failed to get user info");
+//    }];
+//    NSLog(@"userinfo: %@", self.userInfo);
+//    self.me = [User userfromUserInfo:self.userInfo];
+    //    self.nameLabel.text = self.me.name; // userInfo[@"name"];
+    //    self.handleLabel.text =  self.me.handle; //userInfo[@"screen_name"];
+//
+    // So, instead this stuff is hardcoded to me for now...
     self.nameLabel.text = @"Oz"; // userInfo[@"name"];
     self.handleLabel.text =  @"gatoroz"; //userInfo[@"screen_name"];
-    //    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:userInfo[@"profile_image_url"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+
+    
+    //    //    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:userInfo[@"profile_image_url"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pbs.twimg.com/profile_images/300583089/twit_head_normal.jpg"]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         self.avatarImage.image = image;
         self.avatarImage.layer.masksToBounds = YES;

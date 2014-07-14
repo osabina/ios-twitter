@@ -10,4 +10,9 @@
 
 @interface User : NSObject
 
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *handle;
+
++ (User *)userfromUserInfo: (NSDictionary *)userInfo;
+
 @end

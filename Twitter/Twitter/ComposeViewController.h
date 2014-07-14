@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "Tweet.h"
+#import "User.h"
 
 @interface ComposeViewController : UIViewController
 
@@ -18,8 +19,11 @@
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 
 @property (strong, nonatomic) NSDictionary *userInfo;
-@property (strong,nonatomic) Tweet *orig_tweet;
+@property (strong, nonatomic) User *me;
+@property (strong, nonatomic) Tweet *orig_tweet;
 @property (nonatomic) BOOL is_reply;
 @property (nonatomic) BOOL is_retweet;
+
+- (void)setupView;
 
 @end

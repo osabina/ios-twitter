@@ -10,4 +10,14 @@
 
 @implementation User
 
+
++ (User *)userfromUserInfo: (NSDictionary *)userInfo {
+    User *myuser = [[User alloc] init];
+    
+    myuser.name = userInfo[@"name"];
+    myuser.name = userInfo[@"handle"];
+    
+    return myuser;
+}
+
 @end

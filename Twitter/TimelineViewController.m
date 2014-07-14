@@ -40,21 +40,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Home";
-        UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
-                                         initWithTitle:@"Sign Out"
-                                         style:UIBarButtonItemStylePlain
-                                         target:self
-                                         action:@selector(pushSignOutButton)];
-        
-        UIBarButtonItem *newButton = [[UIBarButtonItem alloc]
-                                        initWithTitle:@"New"
-                                        style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(pushNewButton)];
-        
-        self.navigationItem.leftBarButtonItem = signOutButton;
-        self.navigationItem.rightBarButtonItem = newButton;
+        // Do something...
     }
     return self;
 }
@@ -106,6 +92,11 @@
     [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
 }
 
+- (void)pushBurgerButton {
+    // stub - will bring out menu
+    //    [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
+}
+
 - (void)setupNavBar {
     UINavigationBar *nb = self.navigationController.navigationBar;
     nb.tintColor = [UIColor whiteColor];
@@ -122,7 +113,39 @@
                                        forState:UIControlStateNormal];
     [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
                                        forState:UIControlStateHighlighted];
+  
+    self.title = @"Home";
+//    UIBarButtonItem *twitterButton = [[UIBarButtonItem alloc]
+//                                      initWithImage:[UIImage imageNamed:@"Twitter"]
+//                                      style:UIBarButtonItemStylePlain target:self
+//                                      action:@selector(pushTwitterButton)];
+//    twitterButton.enabled = NO;
+
+    UIImageView *twitterIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Twitter"]];
+    [twitterIV setTintColor: [UIColor whiteColor]];
     
+    
+    UIBarButtonItem *burgerButton =  [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"Burger"]
+                                      style:UIBarButtonItemStylePlain target:self
+                                      action:@selector(pushBurgerButton)];
+
+    UIBarButtonItem *newButton =  [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"Quill"]
+                                      style:UIBarButtonItemStylePlain target:self
+                                      action:@selector(pushNewButton)];
+    
+    
+//    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
+//                                      initWithTitle:@"Sign Out"
+//                                      style:UIBarButtonItemStylePlain
+//                                      target:self
+//                                      action:@selector(pushSignOutButton)];
+    
+    
+    self.navigationItem.leftBarButtonItem = burgerButton;
+    self.navigationItem.rightBarButtonItem = newButton;
+    self.navigationItem.titleView = twitterIV;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
