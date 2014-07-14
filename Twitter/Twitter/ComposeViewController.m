@@ -97,6 +97,8 @@
     //    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:userInfo[@"profile_image_url"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pbs.twimg.com/profile_images/300583089/twit_head_normal.jpg"]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         self.avatarImage.image = image;
+        self.avatarImage.layer.masksToBounds = YES;
+        self.avatarImage.layer.cornerRadius = 4.0;
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         self.navigationItem.prompt = @"Failed to load profile image";
         NSLog(@"Failed to get profile view");

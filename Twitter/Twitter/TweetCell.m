@@ -37,6 +37,8 @@
     self.timeAgoLabel.text = tweet.tweetDate.shortTimeAgoSinceNow;
     [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.avatarURL]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         self.avatarImage.image = image;
+        self.avatarImage.layer.masksToBounds = YES;
+        self.avatarImage.layer.cornerRadius = 8.0;
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         NSLog(@"Failed to get profile view");
     }];
