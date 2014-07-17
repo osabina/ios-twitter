@@ -12,6 +12,8 @@
 #import "User.h"
 
 @interface ComposeViewController : UIViewController
+- (IBAction)onTweetButton:(id)sender;
+- (IBAction)onCancelButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

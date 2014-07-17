@@ -12,6 +12,7 @@
 
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
+#import "MainViewController.h"
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
@@ -20,9 +21,8 @@
 
 @property (strong, nonatomic) Tweet *tweet;
 
-- (void)pushCancelButton;
-- (void)pushTweetButton;
-- (void)setupNavBar;
+- (void)onCancelButton:(id) sender;
+- (void)onTweetButton:(id) sender;
 
 @end
 
@@ -39,14 +39,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setupNavBar];
     self.tweetTextView.text = @"";
     [self.tweetTextView becomeFirstResponder];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNavBar];
     [self setupView];
 }
 
@@ -56,63 +54,14 @@
 }
 
 
-- (void)setupNavBar {
-    id barButtonAppearance = [UIBarButtonItem appearance];
-    NSMutableDictionary *barButtonTextAttributes = [NSMutableDictionary dictionaryWithCapacity:1];
-    //    [barButtonTextAttributes setObject:[UIFont fontWithName:@"HelveticaNeue" size:14.0f] forKey:NSFontAttributeName];
-    //    [barButtonTextAttributes setObject:[UIFont systemFontOfSize:13.0f] forKey:NSFontAttributeName];
-    [barButtonTextAttributes setObject: UIColorFromRGB(0x77b6e9) forKey:NSForegroundColorAttributeName ];
-    
-    [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
-                                       forState:UIControlStateNormal];
-    [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
-                                       forState:UIControlStateHighlighted];
-    
-    UINavigationController *nvc = self.navigationController;
-    nvc.navigationBar.barStyle = UIBarStyleDefault;
-    nvc.navigationBar.barTintColor = UIColorFromRGB(0xf9f9f9);
-    nvc.navigationBar.tintColor = UIColorFromRGB(0x77b6e9);
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Cancel"
-                                     style:UIBarButtonItemStylePlain
-                                     target:self
-                                     action:@selector(pushCancelButton)];
-    
-    UIBarButtonItem *tweetButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"Tweet"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(pushTweetButton)];
-    
-    self.navigationItem.leftBarButtonItem = cancelButton;
-    self.navigationItem.rightBarButtonItem = tweetButton;
-    
-    
-}
 
 - (void)setupView {
+    User *me = [User currentUser];
+    NSLog(@"current user: %@", me.handle);
     
-// Killing me that I can't seem to get this data to stick around, it seems to be being GCed (ARCed?)
-// but I haven't a clue why...
-//    [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        self.userInfo = responseObject;
-//        NSLog(@"%@", self.userInfo);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        self.navigationItem.prompt = @"Unable to fetch user profile";
-//        NSLog(@"Failed to get user info");
-//    }];
-//    NSLog(@"userinfo: %@", self.userInfo);
-//    self.me = [User userfromUserInfo:self.userInfo];
-    //    self.nameLabel.text = self.me.name; // userInfo[@"name"];
-    //    self.handleLabel.text =  self.me.handle; //userInfo[@"screen_name"];
-//
-    // So, instead this stuff is hardcoded to me for now...
-    self.nameLabel.text = @"Oz"; // userInfo[@"name"];
-    self.handleLabel.text =  @"gatoroz"; //userInfo[@"screen_name"];
-
-    
-    //    //    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:userInfo[@"profile_image_url"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pbs.twimg.com/profile_images/300583089/twit_head_normal.jpg"]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    self.handleLabel.text = me.handle;
+    self.nameLabel.text = me.name;
+    [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:me.imageURL]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         self.avatarImage.image = image;
         self.avatarImage.layer.masksToBounds = YES;
         self.avatarImage.layer.cornerRadius = 4.0;
@@ -123,38 +72,28 @@
 }
 
     
-- (void)pushCancelButton {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)pushTweetButton {
+
+- (IBAction)onTweetButton:(id)sender {
     NSLog(@"Tweet Tweet");
     if (! [self.tweetTextView.text isEqualToString:@""]) {
         self.tweetTextView.editable = NO;
         [[TwitterClient instance] updateStatus:self.tweetTextView.text withSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             // Tweet *t = [Tweet cookedFromRawTweet:responseObject];
             // Push this back to the view to show without reload.
-            [self.navigationController popViewControllerAnimated:YES];
+            MainViewController *mvc = [[MainViewController alloc]init];
+            [self presentViewController:mvc animated:YES completion:nil];
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.navigationItem.prompt = @"Unable to post tweet";
             NSLog(@"error: %@", error);
         }];
+
     }
 }
 
-
-// navigation view controller delegate methods
-- (void)navigationController:(UINavigationController *)navigationController
-      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [viewController viewWillAppear:animated];
+- (IBAction)onCancelButton:(id)sender {
+     MainViewController *mvc = [[MainViewController alloc]init];
+    [self presentViewController:mvc animated:YES completion:nil];
 }
-
-- (void)navigationController:(UINavigationController *)navigationController
-       didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [viewController viewDidAppear:animated];
-}
-
 
 @end

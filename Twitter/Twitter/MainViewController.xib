@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="contentView" destination="S4S-gC-vxp" id="eUo-1F-dcS"/>
+                <outlet property="navView" destination="Hkv-SC-RGL" id="Z4S-XW-ogY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-SC-RGL" userLabel="Nav View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.4658702099" green="0.71367472629999995" blue="0.91454721719999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="NLq-WE-VlQ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4S-gC-vxp" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="S4S-gC-vxp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0F9-KI-WOZ"/>
+                <constraint firstItem="S4S-gC-vxp" firstAttribute="top" secondItem="Hkv-SC-RGL" secondAttribute="bottom" id="dis-oJ-PDI"/>
+                <constraint firstAttribute="bottom" secondItem="S4S-gC-vxp" secondAttribute="bottom" id="im2-lT-5YU"/>
+                <constraint firstAttribute="trailing" secondItem="Hkv-SC-RGL" secondAttribute="trailing" id="lte-eD-j0Z"/>
+                <constraint firstItem="Hkv-SC-RGL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qvj-vM-Xbk"/>
+                <constraint firstItem="Hkv-SC-RGL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rKI-Ce-caa"/>
+                <constraint firstAttribute="trailing" secondItem="S4S-gC-vxp" secondAttribute="trailing" id="ugv-sU-faz"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="eZc-xf-mit" appends="YES" id="QYU-XI-fyh"/>
+            </connections>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="eZc-xf-mit">
+            <connections>
+                <action selector="onPanGesture:" destination="-1" id="r87-td-FNP"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+</document>

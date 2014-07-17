@@ -9,9 +9,10 @@
 #import "AppDelegate.h"
 #import "TwitterCommon.h"
 #import "TwitterClient.h"
+#import "User.h"
 
-#import "TimelineViewController.h"
 #import "LoginViewController.h"
+#import "MainViewController.h"
 
 @interface AppDelegate()
 @property (assign) BOOL isNavLoaded;
@@ -82,19 +83,28 @@
 }
 
 - (void) setupRootView {
+
+    // Set up user if not already set
+    if ([User currentUser] == nil) {
+        [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [[User alloc] setUser: responseObject];
+            NSLog(@"------ Initialized user ------");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error retrieving user info: %@", [error description]);
+        }];
+    }
+
+    // Display login or main view
     if ([TwitterClient instance].isAuthorized) {
-        TimelineViewController *vc = [[TimelineViewController alloc] init];
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-        nc.navigationBar.tintColor = [UIColor whiteColor];
-        nc.navigationBar.barTintColor = UIColorFromRGB(0x77b6e9);
-        nc.navigationBar.translucent = NO;
-        self.window.rootViewController = nc;
-        vc.signout_delegate = self;
+        MainViewController *mvc = [[MainViewController alloc] init];
+        mvc.signout_delegate = self;
+        self.window.rootViewController = mvc;
     }
     else {
         self.window.rootViewController = [[LoginViewController alloc] init];
         self.window.backgroundColor = [UIColor whiteColor];
         self.isNavLoaded = NO;
+//        [self.window makeKeyAndVisible];
     }
 }
 

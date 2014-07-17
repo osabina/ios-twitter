@@ -1,25 +1,42 @@
 ios-twitter
 ========
 
-Twitter app for iOS class (Assignment #3)
+Twitter app for iOS class (Assignment #3+4)
 
 **Completed User Stories**
 #### Required
-- [x] User can sign in using OAuth login flow 
-- [x] User can view last 20 tweets from their home timeline
-- [x] The current signed in user will be persisted across restarts
-- [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings.  You will also need to augment the model classes.
-- [x] User can pull to refresh
-- [x] User can compose a new tweet by tapping on a compose button.
-- [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- From Assignment #3:
+   - [x] User can sign in using OAuth login flow 
+   - [x] User can view last 20 tweets from their home timeline
+   - [x] The current signed in user will be persisted across restarts
+   - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings.  You will also need to augment the model classes.
+   - [x] User can pull to refresh
+   - [x] User can compose a new tweet by tapping on a compose button.
+   - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- Hamburger menu
+   - Dragging anywhere in the view should reveal the menu.
+   - [x] The menu should include links to your profile, the home timeline, and the mentions view (can look similar to the LinkedIn menu or feel free to take liberty with the UI)
+- Profile page
+   - Contains the user header view
+   - Contains a section with the users basic stats: # tweets, # following, # followers
+- Home Timeline
+   - Tapping on a user image should bring up that user's profile page
 
 #### Optional
-- [] When composing, you should have a countdown in the upper right for the tweet limit.
-- [] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [] Retweeting and favoriting should increment the retweet and favorite count.
-- [] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [] Replies should be prefixed with the username and the reply_id should be set when posting the tweet
-- [] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- When composing, you should have a countdown in the upper right for the tweet limit.
+- After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
+- Retweeting and favoriting should increment the retweet and favorite count.
+- User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
+- Replies should be prefixed with the username and the reply_id should be set when posting the tweet
+- User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- Implement the paging view for the user description.
+- As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+- Pulling down the profile page should blur and resize the header image.
+- Account switching (optional):
+   - Long press on tab bar to bring up Account view with animation
+   - Tap account to switch to
+   - Include a plus button to Add an Account
+   - Swipe to delete an account
 
 **UI Demo**
 
@@ -28,8 +45,6 @@ Twitter app for iOS class (Assignment #3)
 **Notes**
 
 This took me ~12 hours (plus a couple of hours stuck on below :( ).
-
-I had to stub the user display info for the compose view.  For some reason I kept losing my model data and after hours of banging my head against the wall, I gave up.
 
 Also never completely got the table cells to shrink properly.
 

@@ -10,8 +10,10 @@
 #import "TimelineViewController.h"
 
 #import "ComposeViewController.h"
+#import "MenuViewController.h"
 #import "TweetViewController.h"
 #import "TweetCell.h"
+
 #import "TwitterClient.h"
 #import "Tweet.h"
 
@@ -93,8 +95,8 @@
 }
 
 - (void)pushBurgerButton {
-    // stub - will bring out menu
-    //    [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[MenuViewController alloc] init] animated:YES];
+
 }
 
 - (void)setupNavBar {

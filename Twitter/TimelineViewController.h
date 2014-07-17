@@ -15,7 +15,7 @@
         BOOL _reloading;
 }
 
-@property (nonatomic, strong)AppDelegate *signout_delegate;
+@property (nonatomic, strong) AppDelegate *signout_delegate;
 
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;

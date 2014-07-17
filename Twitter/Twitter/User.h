@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+//@interface User : NSObject <NSCoding>
 @interface User : NSObject
+
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *handle;
+@property (strong, nonatomic) NSString *imageURL;
 
-+ (User *)userfromUserInfo: (NSDictionary *)userInfo;
++ (User *)currentUser;
+- (void)setUser:(id) responseObject;
+
+//- (void)encodeWithCoder:(NSCoder *)coder;
+//- (id)initWithCoder:(NSCoder *)coder;
 
 @end
