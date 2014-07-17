@@ -15,9 +15,10 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *handle;
 @property (strong, nonatomic) NSString *imageURL;
+@property (strong, nonatomic) NSString *backgroundImageURL;
 
 + (User *)currentUser;
-- (void)setUser:(id) responseObject;
+- (void)setupUser:(id) responseObject;
 
 //- (void)encodeWithCoder:(NSCoder *)coder;
 //- (id)initWithCoder:(NSCoder *)coder;

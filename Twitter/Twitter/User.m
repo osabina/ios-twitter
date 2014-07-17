@@ -26,12 +26,12 @@ static User *currentUser = nil;
     return currentUser;
 }
 
-- (void)setUser:(id)response {
+- (void)setupUser:(id)response {
     currentUser = [[User alloc] initWithDictionary:response];
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithDictionary:response];
+    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:response];
     
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    [def setObject:[NSKeyedArchiver archivedDataWithRootObject:dictionary] forKey:@"current_user"];
+    [def setObject:[NSKeyedArchiver archivedDataWithRootObject:dict] forKey:@"current_user"];
     [def synchronize];
 //    currentUser = [[User alloc] initWithDictionary: (NSDictionary *) response];
 //    self = [[User alloc] initWithDictionary:response];
@@ -45,10 +45,10 @@ static User *currentUser = nil;
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        // NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:response];
         self.handle = dict[@"screen_name"];
         self.name = dict[@"name"];
         self.imageURL = dict[@"profile_image_url"];
+        self.backgroundImageURL = dict[@"profile_background_image_url"];
     }
     return self;
 }

@@ -9,7 +9,6 @@
 #import "Tweet.h"
 
 @implementation Tweet
-//static NSString *RetweetedValue = @"1";
 
 + (NSArray *) tweetsFromRawResponse:(NSArray*) responseArray {
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:responseArray.count];

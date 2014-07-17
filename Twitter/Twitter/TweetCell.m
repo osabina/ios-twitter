@@ -35,10 +35,17 @@
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.handle];
     self.bodyLabel.text = tweet.body;
     self.timeAgoLabel.text = tweet.tweetDate.shortTimeAgoSinceNow;
+    
     [self.avatarImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.avatarURL]] placeholderImage:[UIImage imageNamed:@"placeholder"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        ///hmm this doesn't work.  Seem to recall something about gesture recognizers....
+        // ah you know what, they know what view they were acting on....hmm.
         self.avatarImage.image = image;
         self.avatarImage.layer.masksToBounds = YES;
         self.avatarImage.layer.cornerRadius = 8.0;
+        [self.avatarButton setTitle:@"" forState: UIControlStateNormal];
+        [self.avatarButton setImage:self.avatarImage.image forState:UIControlStateNormal];
+        
+
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         NSLog(@"Failed to get profile view");
     }];
@@ -101,5 +108,10 @@
     cvc.userInfo = self.userInfo;
     cvc.is_retweet = YES;
     [self.navController pushViewController:cvc animated:YES];
+}
+- (IBAction)onImageTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+    // This is where we'd pull up a user profile page - TBI
+}
+- (IBAction)avatarButtonPushed:(id)sender {
 }
 @end

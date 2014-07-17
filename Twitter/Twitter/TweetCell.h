@@ -17,14 +17,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *retweetedImageHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarImageTopMargin;
 
+@property (strong,nonatomic) UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 - (IBAction)replyButtonPushed:(id)sender;
@@ -34,6 +33,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)favoriteButtonPushed:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *avatarButton;
+- (IBAction)avatarButtonPushed:(id)sender;
 
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) Tweet *tweet;

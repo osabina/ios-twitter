@@ -1,9 +1,10 @@
 ios-twitter
 ========
 
-Twitter app for iOS class (Assignment #3+4)
+Twitter app for iOS class (Assignment #3 + 4)
 
 **Completed User Stories**
+
 #### Required
 - From Assignment #3:
    - [x] User can sign in using OAuth login flow 
@@ -14,13 +15,13 @@ Twitter app for iOS class (Assignment #3+4)
    - [x] User can compose a new tweet by tapping on a compose button.
    - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 - Hamburger menu
-   - Dragging anywhere in the view should reveal the menu.
+   - [x] Dragging anywhere in the view should reveal the menu.
    - [x] The menu should include links to your profile, the home timeline, and the mentions view (can look similar to the LinkedIn menu or feel free to take liberty with the UI)
 - Profile page
-   - Contains the user header view
-   - Contains a section with the users basic stats: # tweets, # following, # followers
+   - [ ] Contains the user header view
+   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
 - Home Timeline
-   - Tapping on a user image should bring up that user's profile page
+   - [ ] Tapping on a user image should bring up that user's profile page
 
 #### Optional
 - When composing, you should have a countdown in the upper right for the tweet limit.
@@ -40,13 +41,15 @@ Twitter app for iOS class (Assignment #3+4)
 
 **UI Demo**
 
+(this still needs to be updated for assignment #4)
+
 ![demo gif](https://raw.githubusercontent.com/osabina/ios-twitter/master/rt_demo.gif)
 
 **Notes**
 
-This took me ~12 hours (plus a couple of hours stuck on below :( ).
+This took me ~12 hours for assignment #3, about the same for #4.
 
-Also never completely got the table cells to shrink properly.
+Never completely got the table cells to shrink properly, pretty sure my autolayout was too complicted :/..
 
 **Credits**
 

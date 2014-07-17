@@ -17,10 +17,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) IBOutlet UIView *menuView;
 - (IBAction)pushProfileButton:(id)sender;
 - (IBAction)pushTimelineButton:(id)sender;
 - (IBAction)pushMentionsButton:(id)sender;
-- (IBAction)pushLogoutButton:(id)sender;
+- (IBAction)onLogoutButton:(id)sender;
 
 
 @end

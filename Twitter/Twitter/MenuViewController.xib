@@ -9,6 +9,7 @@
                 <outlet property="avatarImage" destination="9lF-SN-23u" id="g6a-7b-xCQ"/>
                 <outlet property="contentView" destination="3jV-wX-B88" id="c2n-DY-f2T"/>
                 <outlet property="handleLabel" destination="ZUi-GI-kNJ" id="fnS-hs-Tdl"/>
+                <outlet property="menuView" destination="rkC-iR-Itt" id="Pky-rk-nla"/>
                 <outlet property="nameLabel" destination="yM6-Om-vau" id="ZgB-Qx-Xo9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -107,7 +108,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="pushLogoutButton:" destination="-1" eventType="touchUpInside" id="JrO-pb-7KD"/>
+                                <action selector="onLogoutButton:" destination="-1" eventType="touchUpInside" id="0RR-zc-6WG"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rose Eklund" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM6-Om-vau">

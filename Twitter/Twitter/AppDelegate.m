@@ -87,7 +87,7 @@
     // Set up user if not already set
     if ([User currentUser] == nil) {
         [[TwitterClient instance] getUserInfoWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [[User alloc] setUser: responseObject];
+            [[User alloc] setupUser: responseObject];
             NSLog(@"------ Initialized user ------");
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error retrieving user info: %@", [error description]);

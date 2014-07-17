@@ -21,6 +21,8 @@
 - (IBAction)onPanGesture:(UIPanGestureRecognizer *)sender;
 
 - (void)showMenu;
+- (void)showMenuWithSecs:(float)secs;
 - (void)hideMenu;
+- (void)hideMenuWithSecs:(float)secs;
 
 @end

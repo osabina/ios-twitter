@@ -89,7 +89,11 @@
 }
 
 - (void)showMenu {
-    [UIView animateWithDuration:REVEAL_DURATION animations:
+    [self showMenuWithSecs: REVEAL_DURATION];
+}
+
+- (void)showMenuWithSecs:(float)secs {
+    [UIView animateWithDuration:secs animations:
      ^{
          // I am not sure why this doesn't work....
          // self.fullView.frame = self.menuVC.contentView.frame;
@@ -114,8 +118,13 @@
      }];
 }
 
+
 - (void)hideMenu {
-    [UIView animateWithDuration:REVEAL_DURATION animations:
+    [self hideMenuWithSecs: REVEAL_DURATION];
+}
+
+- (void)hideMenuWithSecs:(float)secs {
+     [UIView animateWithDuration:secs animations:
      ^{
          NSLog(@"nav height = %f", self.navView.frame.size.height);
          self.navbarVC.view.frame =
@@ -136,8 +145,38 @@
 }
 - (IBAction)onPanGesture:(UIPanGestureRecognizer *)panGestureRecognizer {
     CGPoint touch = [panGestureRecognizer locationInView:self.view];
-    
-    
-    
+
+    if ( panGestureRecognizer.state == UIGestureRecognizerStateBegan ) {
+        NSLog(@"pan began");
+        // Nothing special needed
+    } else if ( panGestureRecognizer.state == UIGestureRecognizerStateChanged ) {
+        NSLog(@"pan continued");
+        if (touch.x <= self.menuVC.contentView.frame.origin.x ) {
+            self.navbarVC.view.frame =
+            CGRectMake(touch.x,
+                       self.menuVC.contentView.frame.origin.y,
+                       self.navView.frame.size.width,
+                       self.navView.frame.size.height);
+            self.timelineVC.view.frame =
+            CGRectMake(touch.x,
+                       (self.menuVC.contentView.frame.origin.y +
+                        self.navView.frame.size.height),
+                       self.menuVC.contentView.frame.size.width,
+                       self.menuVC.contentView.frame.size.height);
+            // we need to check for beyond the bounds here.
+        }  // else we have moved as far as we can, don't do a thing
+    } else if ( panGestureRecognizer.state == UIGestureRecognizerStateEnded ) {
+        NSLog(@"pan ended");
+        float shownFrac = self.navbarVC.view.frame.origin.x / self.menuVC.menuView.frame.size.width;
+        float anim_secs = REVEAL_DURATION / 2; // to start
+        anim_secs *= anim_secs * (0.5 - abs(0.5-shownFrac)) * 2; // faster if the gap is smaller
+        if (shownFrac > 0.5 ) {
+            //We are more than half way, reveal the rest
+            [self showMenuWithSecs: anim_secs];
+        } else {
+            // Spring back
+            [self hideMenuWithSecs: anim_secs];
+        }
+    }
 }
 @end
